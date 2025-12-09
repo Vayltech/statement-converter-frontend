@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Fintech Theme Defaults */
+body {
+    @apply bg-vayl-bg text-vayl-text antialiased;
+}
+
+/* Scrollbar Styling - Slate & Teal */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-vayl-bg;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-vayl-border rounded-full hover:bg-vayl-primary;
+}
