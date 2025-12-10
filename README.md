@@ -1,16 +1,24 @@
-# React + Vite
+# Vsync | AI Financial Data Converter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Live Demo:** [https://vsync.vayltech.com](https://vsync.vayltech.com)
 
-Currently, two official plugins are available:
+## 🚀 Project Overview
+Vsync is a production-ready SaaS platform designed to automate financial data entry for accountants and small businesses. This repository contains the **Frontend application**, which serves as the user interface for converting PDF bank statements into editable formats like Excel, CSV, and QuickBooks Online (QBO). The application leverages AI (GPT-4o) on the backend to extract transaction data with high accuracy, complete with fraud detection and automatic balance reconciliation.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Technical Stack
+Built with **React (Vite)** and styled with **Tailwind CSS**, this single-page application features a modern, responsive "Dark Mode" design optimized for speed and usability. It integrates **Supabase** for secure authentication (RLS), **Stripe** for tiered subscription management, and communicates with a Node.js/Express backend for file processing. Key technical highlights include custom React hooks for state management, secure handling of file uploads, and a dynamic UI that adjusts based on the user's live subscription status.
 
-## React Compiler
+## ✨ Key Features
+* **Modern UI/UX:** Responsive design with custom "ribbon" branding and smooth animations.
+* **Secure Authentication:** Integrated with Supabase Auth for seamless sign-up/login.
+* **File Handling:** Drag-and-drop interface supporting PDF, Images, and Excel files.
+* **Payment Integration:** Real-time connection to Stripe for handling upgrades and "pro" tier access.
+* **Reconciliation Engine:** Visual feedback for users when statement balances don't match extracted data.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📦 Local Setup
+```bash
+# Install dependencies
+npm install
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Run development server
+npm run dev
