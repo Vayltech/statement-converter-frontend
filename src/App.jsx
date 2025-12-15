@@ -208,7 +208,7 @@ export default function App() {
 
 // --- SUBSCRIPTION TIERS (Kept the same) ---
 const PLANS = [
-  { id: 'basic', name: 'Basic', price: '$7', period: '/mo', priceId: 'price_1SX5yF5XXtc792l625r3suMc', features: ['50 Page Limit', 'Formats: CSV, QBO'], color: 'bg-vayl-card border-vayl-border' },
+  { id: 'basic', name: 'Basic', price: '$7', period: '/mo', priceId: 'price_1SX5yF5XXtc792l625r3suMc', features: ['20 Page Limit', 'Formats: CSV, QBO'], color: 'bg-vayl-card border-vayl-border' },
   { id: 'pro', name: 'Pro', price: '$9', period: '/mo', priceId: 'price_1SX60r5XXtc792l6LWXSzfyt', features: ['Unlimited Pages', 'All Formats (IIF, Excel)', 'Receipts & Invoices'], color: 'bg-vayl-card border-vayl-primary shadow-xl shadow-teal-900/20', popular: true },
   { id: 'pro3', name: 'Pro 3', price: '$19', period: '/qtr', priceId: 'price_1SX62W5XXtc792l6xAGss9r6', features: ['Same as Pro', 'Save ~30%'], color: 'bg-vayl-card border-vayl-border' },
   { id: 'pro12', name: 'Pro 12', price: '$57', period: '/yr', priceId: 'price_1SX65J5XXtc792l6WxKOlHOp', features: ['Same as Pro', 'Best Value'], color: 'bg-vayl-card border-vayl-border' },
