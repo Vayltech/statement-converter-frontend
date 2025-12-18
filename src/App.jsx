@@ -3,6 +3,7 @@ import { supabase } from './supabaseClient';
 import AuthForm from './AuthForm';
 import Logo from './components/VsyncLogo';
 import SettingsModal from './SettingsModal';
+import DeleteAccountModal from './components/DeleteAccountModal'; // <--- NEW: Import the new modal
 import { Upload, FileText, AlertCircle, Loader2, ChevronDown, LogOut, User, Sparkles, Zap, Check, X, Settings } from 'lucide-react';
 
 // Vayltech Logo Component for Ribbons
@@ -17,6 +18,8 @@ export default function App() {
   const [session, setSession] = useState(null);
   const [showPricing, setShowPricing] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false); // <--- NEW: State for delete modal
+  const [isDeleting, setIsDeleting] = useState(false); // <--- NEW: Loading state for deletion process
   const [file, setFile] = useState(null);
   const [format, setFormat] = useState('CSV');
   const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +27,10 @@ export default function App() {
   const [subscription, setSubscription] = useState('free');
   const [reconStatus, setReconStatus] = useState(null);
 
+  // Backend API URLs
   const API_URL = 'https://vsync-converter-backend.onrender.com/convert';
+  // <--- NEW: Add the delete endpoint URL
+  const DELETE_API_URL = 'https://vsync-converter-backend.onrender.com/api/user/delete-account';
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -46,6 +52,43 @@ export default function App() {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     localStorage.clear(); setSession(null);
+  };
+
+  // <--- NEW: Handler for confirming account deletion
+  const handleConfirmDelete = async () => {
+    if (!session) return;
+    setIsDeleting(true);
+
+    try {
+      // Get the current session token for authentication
+      const { data: { session: currentSession } } = await supabase.auth.getSession();
+      const token = currentSession?.access_token;
+
+      if (!token) throw new Error("No authentication token found.");
+
+      const response = await fetch(DELETE_API_URL, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`, // Send token in header
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Account deletion failed.');
+      }
+
+      // Success! Log out the user.
+      await handleLogout();
+      alert("Your account has been permanently deleted.");
+
+    } catch (err) {
+      console.error("Deletion Error:", err);
+      alert(`Error: ${err.message}`);
+      setIsDeleting(false);
+      setShowDeleteModal(false); // Close modal on error
+    }
   };
 
   if (!session) return <AuthForm onLogin={setSession} />;
@@ -189,8 +232,9 @@ export default function App() {
           </button>
         </div>
 
+        {/* <--- NEW: Pass the onDelete handler to the SettingsModal */}
         {showPricing && <PricingComponent userId={session.user.id} onClose={() => setShowPricing(false)} />}
-        {showSettings && <SettingsModal session={session} onClose={() => setShowSettings(false)} />}
+        {showSettings && <SettingsModal session={session} onClose={() => setShowSettings(false)} onDeleteClick={() => { setShowSettings(false); setShowDeleteModal(true); }} />}
 
         <div className="mt-16 text-center z-10">
           <a href="mailto:support@vayltech.com" className="text-vayl-muted hover:text-vayl-primary transition-colors font-semibold text-sm">Support</a>
@@ -202,6 +246,15 @@ export default function App() {
         <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_bottom,transparent,theme(colors.vayl.primary)_50%,transparent)] bg-[length:100%_200%] animate-pulse-slow"></div>
         <VayltechLogo />
       </div>
+
+      {/* <--- NEW: Render the DeleteAccountModal here */}
+      <DeleteAccountModal
+        isOpen={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        onConfirm={handleConfirmDelete}
+        isLoading={isDeleting}
+      />
+
     </div>
   );
 }
