@@ -47,7 +47,7 @@ const DeleteAccountModal = ({ isOpen, onClose, onConfirm, isLoading }) => {
                                     <input
                                         type="text"
                                         id="confirm-delete"
-                                        className="mt-2 p-2 border-2 border-red-300 focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm rounded-md"
+                                        className="block w-full p-3 border-2 border-red-300 focus:ring-red-500 focus:border-red-500 shadow-sm sm:text-sm rounded-xl text-gray-900 text-lg font-bold tracking-widest"
                                         placeholder="DELETE"
                                         value={confirmationText}
                                         onChange={(e) => setConfirmationText(e.target.value)}
