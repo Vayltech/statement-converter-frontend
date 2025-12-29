@@ -266,7 +266,7 @@ const PLANS = [
   { id: 'pro3', name: 'Pro 3', price: '$19', period: '/qtr', priceId: 'price_1SX62W5XXtc792l6xAGss9r6', features: ['Same as Pro', 'Save ~30%'], color: 'bg-vayl-card border-vayl-border' },
   { id: 'pro12', name: 'Pro 12', price: '$57', period: '/yr', priceId: 'price_1SX65J5XXtc792l6WxKOlHOp', features: ['Same as Pro', 'Best Value'], color: 'bg-vayl-card border-vayl-border' },
   { id: 'team3', name: 'Team 3', price: '$29', period: '/qtr', priceId: 'price_1SYBSZ5XXtc792l6k80TTAPp', features: ['6 Simultaneous Logins', 'Team Dashboard'], color: 'bg-[#020617] border-blue-900/40' },
-  { id: 'team12', name: 'Team 12', price: '$67', period: '/yr', priceId: 'price_1SYBTk5XXtc792l6axcP1rXh', features: ['50 Simultaneous Logins', 'Enterprise Priority'], color: 'bg-[#020617] border-blue-900/40' },
+  { id: 'team12', name: 'Team 12', price: '$67', period: '/yr', priceId: 'price_1SYBTk5XXtc792l6axcP1rXh', features: ['20 Simultaneous Logins', 'Enterprise Priority'], color: 'bg-[#020617] border-blue-900/40' },
 ];
 
 function PricingComponent({ userId, onClose }) {
