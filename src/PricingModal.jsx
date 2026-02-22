@@ -55,7 +55,7 @@ const PLANS = [
 export default function Pricing({ userId, onClose }) {
     const [loading, setLoading] = useState(null);
     // Use the environment variable, fallback to hardcoded if testing locally without env
-    const API_URL = import.meta.env.VITE_API_URL || 'https://statement-converter-backend.vercel.app';
+    const API_URL = import.meta.env.VITE_API_URL || 'https://statement-converter-backend.onrender.com';
 
     const handleSubscribe = async (priceId) => {
         setLoading(priceId);
