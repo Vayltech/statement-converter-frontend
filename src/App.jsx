@@ -5,6 +5,7 @@ import Logo from './components/VsyncLogo';
 import SettingsModal from './SettingsModal';
 import DeleteAccountModal from './components/DeleteAccountModal';
 import { Upload, FileText, AlertCircle, Loader2, ChevronDown, LogOut, User, Sparkles, Zap, Check, X, Settings } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 
 // Vayltech Logo Component for Ribbons
 const VayltechLogo = () => (
@@ -258,6 +259,7 @@ export default function App() {
         onConfirm={handleConfirmDelete}
         isLoading={isDeleting}
       />
+      <Analytics />
 
     </div>
   );
